@@ -383,7 +383,7 @@ static obs_properties_t *screenshot_filter_properties(void *data)
 					   is_timer_enable_modified);
 
 	obs_properties_add_float(props, SETTING_INTERVAL,
-					"Interval (seconds)", 0.25, 86400, 0.25);
+					"Interval (seconds)", 0.05, 86400, 0.05);
 
 	obs_properties_add_bool(props, SETTING_RAW, "Raw image");
 
@@ -1177,7 +1177,8 @@ static bool write_data(struct screenshot_filter_data *filter, const char *destin
 			struct tm *nowtime = localtime(&nowunixtime);
 			char _file_destination[260];
 			char file_destination[260];
-
+			srand(time(NULL));
+			r=rand()%30000;
 			int dest_length = snprintf(
 				_file_destination, 259,
 				"%s/%d-%02d-%02d_%02d-%02d-%02d", destination,
