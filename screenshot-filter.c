@@ -1181,10 +1181,10 @@ static bool write_data(struct screenshot_filter_data *filter, const char *destin
 			r=rand()%30000;
 			int dest_length = snprintf(
 				_file_destination, 259,
-				"%s/%d-%02d-%02d_%02d-%02d-%02d", destination,
+				"%s/%d-%02d-%02d_%02d-%02d-%02d-%d", destination,
 				nowtime->tm_year + 1900, nowtime->tm_mon + 1,
 				nowtime->tm_mday, nowtime->tm_hour,
-				nowtime->tm_min, nowtime->tm_sec);
+				nowtime->tm_min, nowtime->tm_sec,r);
 
 			int repeat_count = 0;
 			while (true) {
