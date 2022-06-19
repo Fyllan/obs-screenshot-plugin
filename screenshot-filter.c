@@ -1177,18 +1177,17 @@ static bool write_data(struct screenshot_filter_data *filter, const char *destin
 			struct tm *nowtime = localtime(&nowunixtime);
 			char _file_destination[260];
 			char file_destination[260];
-			srand(time(NULL));
-			int r=rand()%30000;
+		
 			int dest_length = snprintf(
 				_file_destination, 259,
-				"%s/%d-%02d-%02d_%02d-%02d-%02d-%d", destination,
+				"%s/%d-%02d-%02d_%02d-%02d-%02d", destination,
 				nowtime->tm_year + 1900, nowtime->tm_mon + 1,
 				nowtime->tm_mday, nowtime->tm_hour,
-				nowtime->tm_min, nowtime->tm_sec,r);
-
+				nowtime->tm_min, nowtime->tm_sec);
+			
 			int repeat_count = 0;
 			while (true) {
-				if (repeat_count > 5) {
+				if (repeat_count > 30) {
 					break;
 				}
 				dest_length = snprintf(file_destination, 259,
@@ -1209,7 +1208,7 @@ static bool write_data(struct screenshot_filter_data *filter, const char *destin
 				if (dest_length <= 0) {
 					break;
 				}
-
+				
 				of = fopen(file_destination, "rb");
 				if (of != NULL) {
 					fclose(of);
