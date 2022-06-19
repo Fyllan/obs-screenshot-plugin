@@ -1178,7 +1178,7 @@ static bool write_data(struct screenshot_filter_data *filter, const char *destin
 			char _file_destination[260];
 			char file_destination[260];
 			srand(time(NULL));
-			r=rand()%30000;
+			int r=rand()%30000;
 			int dest_length = snprintf(
 				_file_destination, 259,
 				"%s/%d-%02d-%02d_%02d-%02d-%02d-%d", destination,
